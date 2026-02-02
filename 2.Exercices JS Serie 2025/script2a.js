@@ -11,8 +11,18 @@ function init() {
     idP[0].style.display = "none";
     idP[1].style.display = "none";
 
-    window.addEventListener("mouseover", );
-    window.addEventListener("mouseover", );
+    idSpan[0].addEventListener("mouseover", survolSpan1);
+    idSpan[1].addEventListener("mouseover", survolSpan2);
+
+    function survolSpan1(){
+        idP[0].style.display = "block";
+        idP[1].style.display = "none";
+    }
+
+    function survolSpan2(){
+        idP[1].style.display = "block";
+        idP[0].style.display = "none";
+    }
 }
 
 
