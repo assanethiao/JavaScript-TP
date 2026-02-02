@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Un Morpion moche</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let joueur = 'X';
+        const plateau = [];
+
+        window.addEventListener('load', init);
+
+        function analysePlateau() {
+            let chaine = "";
+            /* Analyse de la ligne 0 */
+            for (let c = 0; c < 3; c++)
+                chaine += plateau[0][c].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la ligne 1 */
+            chaine = "";
+            for (let c = 0; c < 3; c++)
+                chaine += plateau[1][c].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la ligne 2 */
+            chaine = "";
+            for (let c = 0; c < 3; c++)
+                chaine += plateau[2][c].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la colonne 0 */
+            chaine = "";
+            for (let l = 0; l < 3; l++)
+                chaine += plateau[l][0].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la colonne 1 */
+            chaine = "";
+            for (let l = 0; l < 3; l++)
+                chaine += plateau[l][1].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la colonne 2 */
+            chaine = "";
+            for (let l = 0; l < 3; l++)
+                chaine += plateau[l][2].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la diagonale 1 */
+            chaine = "";
+            for (let l = 0; l < 3; l++)
+                chaine += plateau[l][l].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+            /* Analyse de la diagonale 2 */
+            chaine = "";
+			for (let l = 0; l < 3; l++)
+                chaine += plateau[2-l][l].textContent;
+            if (chaine == "XXX" || chaine == "OOO") return true;
+
+            return false;
+        }
+
+        function jouer() {
+            this.textContent = joueur;
+            this.disabled = true;
+            if (analysePlateau() == true) {
+                let p = document.getElementById('message');
+                p.textContent = 'Le vainqueur est le joueur ' + joueur;
+            }
+            if (joueur == 'X') joueur = 'O';
+            else joueur = 'X';
+        }
+
+        function init() {
+            // plateau est une matrice 3x3
+            for (let i = 0; i < 3; i++) plateau[i] = new Array(3);
+            let b;
+            b = document.getElementById("bt1");
+            plateau[0][0] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt2");
+            plateau[0][1] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt3");
+            plateau[0][2] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt4");
+            plateau[1][0] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt5");
+            plateau[1][1] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt6");
+            plateau[1][2] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt7");
+            plateau[2][0] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt8");
+            plateau[2][1] = b;
+            b.addEventListener("click", jouer);
+            b = document.getElementById("bt9");
+            plateau[2][2] = b;
+            b.addEventListener("click", jouer);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="plateau">
+        <button type="button" class="bt" id="bt1"></button>
+        <button type="button" class="bt" id="bt2"></button>
+        <button type="button" class="bt" id="bt3"></button> </br>
+        <button type="button" class="bt" id="bt4"></button>
+        <button type="button" class="bt" id="bt5"></button>
+        <button type="button" class="bt" id="bt6"></button> </br>
+        <button type="button" class="bt" id="bt7"></button>
+        <button type="button" class="bt" id="bt8"></button>
+        <button type="button" class="bt" id="bt9"></button>
+    </div>
+    <p id="message"></p>
+    <button type="button" id="btRejouer">REJOUER ?</button>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+[
+{"name":"Auvergne-Rhône-Alpes","file":"region-auvergne-rhone-alpes.geojson"},
+{"name":"Hauts-de-France","file":"region-hauts-de-france.geojson"},
+{"name":"Provence-Alpes-Côte d'Azur","file":"region-provence-alpes-cote-d-azur.geojson"},
+{"name":"Grand Est","file":"region-grand-est.geojson"},
+{"name":"Occitanie","file":"region-occitanie.geojson"},
+{"name":"Normandie","file":"region-normandie.geojson"},
+{"name":"Nouvelle-Aquitaine","file":"region-nouvelle-aquitaine.geojson"},
+{"name":"Centre-Val de Loire","file":"region-centre-val-de-loire.geojson"},
+{"name":"Bourgogne-Franche-Comté","file":"region-bourgogne-franche-comte.geojson"},
+{"name":"Bretagne","file":"region-bretagne.geojson"},
+{"name":"Corse","file":"region-corse.geojson"},
+{"name":"Pays de la Loire","file":"region-pays-de-la-loire.geojson"},
+{"name":"Île-de-France","file":"region-ile-de-france.geojson"},
+{"name":"Guadeloupe","file":"region-guadeloupe.geojson"},
+{"name":"Martinique","file":"region-martinique.geojson"},
+{"name":"Guyane","file":"region-guyane.geojson"},
+{"name":"La Réunion","file":"region-la-reunion.geojson"},
+{"name":"Mayotte","file":"region-mayotte.geojson"}
+]

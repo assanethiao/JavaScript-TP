@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Carte Nominatim</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+		<style>
+			#map {
+			border-radius: 30px;
+			border: 3px solid #8AC007;
+			padding: 20px; 
+			width: 800px;
+			height: 400px; 
+			}
+		</style>
+		<script>
+			$(document).ready(function(){
+				//Chargement initial de la MAP (zoom initial 5)
+				var map = L.map('map').setView([0,0],5);
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: 'P13'}).addTo(map);
+				
+				//Sur le click de la map, ajout d'un marqueur sur la carte avec le nom et le code du pays
+				map.on('click', onClick);
+				
+				function onClick(e) {
+					// On recherche ici le pays sur lequel on a clické
+					// e contient automatiquement la lat/lon (e.latlng)
+					// Requete AJAX de type GET pour récupérer les infos du pays sur le point où on a cliqué (lati, longi) 
+					$.ajax({
+						type: 'GET',
+						url: "http://nominatim.openstreetmap.org/reverse",
+						dataType: 'jsonp',
+						jsonpCallback: 'data',
+						data: { format: "json", limit: 1,lat: e.latlng.lat,lon: e.latlng.lng,json_callback: 'data' },
+						error: function(xhr, status, error) {
+							alert("ERREUR "+error);
+						},
+						success: function(data){
+							
+							// A compléter ...
+							
+						}
+					});
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<h1>jQuery + AJAX + JSON + Leaflet + Nomatim</h1>
+		<h2>Interaction avec la carte : </h2>
+		<h2>Cliquer sur la map pour faire apparaitre un marqueur indiquant les coordonnées du point cliqué ainsi que le pays correspondant</h2>
+		<h2>Par ailleurs, à droite de la carte, sera affiché l'intégralité de la réponse JSON du service web Nominatim</h2>
+		<div id="map" style="display:inline-block;"></div>	
+		<div id="info" style="display:inline-block;	width:400px;"></div>
+	</body>
+</html>			

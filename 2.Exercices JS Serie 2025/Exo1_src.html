@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Evènements : Premiers tests</title>
+		<meta charset="utf-8" />
+		<script>
+		</script>
+	</head>
+	<body onload="myWelcome()" onkeydown="">	
+		<h1>Evènements : Premiers tests</h1>
+		<p>
+			Art. 1er. Les hommes naissent et demeurent libres et égaux en droits. Les distinctions sociales ne peuvent être fondées que sur l'utilité commune.
+			<BR/>
+			Art. 2. Le but de toute association politique est la conservation des droits naturels et imprescriptibles de l'Homme. Ces droits sont la liberté, la propriété, la sûreté, et la résistance à l'oppression.
+			<BR/>
+			Art. 3. Le principe de toute Souveraineté réside essentiellement dans la Nation. Nul corps, nul individu ne peut exercer d'autorité qui n'en émane expressément.
+			<BR/>
+			Art. 4. La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui : ainsi, l'exercice des droits naturels de chaque homme n'a de bornes que celles qui assurent aux autres Membres de la Société la jouissance de ces mêmes droits. Ces bornes ne peuvent être déterminées que par la Loi.
+			<BR/>
+		</p>
+		
+		<div class="illustration">
+			<img src="images/chat.jpg" alt="un chat" width="200" onmouseover="myImage()" />
+		</div>
+		<button onclick="myButton()">cliquez ici !</button>
+		<br />
+		
+		<button id="bnuit" onclick="mytouche(this)">nuit</button>
+		<button onclick="mytouche(this)">jour</button>
+		<br />
+		
+		<div class="illustration">
+			<img id="ecran" src="images/chat.jpg" alt="un chat" width="200"
+			onmouseover="mylion()" onmouseout ="mychat()" />
+		</div>
+		
+		<script src="script1.js"></script>
+	</body>
+</html>
