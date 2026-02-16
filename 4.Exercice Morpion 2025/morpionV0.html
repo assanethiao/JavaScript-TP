@@ -8,11 +8,11 @@
     <script>
         let joueur = 'X';
         const plateau = [];
-
+        let chaine = "";
         window.addEventListener('load', init);
 
         function analysePlateau() {
-            let chaine = "";
+            
             /* Analyse de la ligne 0 */
             for (let c = 0; c < 3; c++)
                 chaine += plateau[0][c].textContent;
@@ -61,7 +61,10 @@
             if (analysePlateau() == true) {
                 let p = document.getElementById('message');
                 p.textContent = 'Le vainqueur est le joueur ' + joueur;
-            }else if(chaine.length )
+            }else{
+                let p = document.getElementById('message');
+                p.textContent = 'Match nul ';
+            }
             if (joueur == 'X') joueur = 'O';
             else joueur = 'X';
         }
