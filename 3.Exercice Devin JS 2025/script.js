@@ -1,28 +1,49 @@
 let nombre = 31;
 let boutton = document.getElementById("valider");
+let valeur = " ";
+let messageElement = " ";
 
 function jouer(){
-    let valeur = document.getElementById("input").value;
-    let messageElement = document.getElementById("message");
+    valeur = document.getElementById("input").value;
+    messageElement = document.getElementById("message");
 
-    if(isNaN(value)){
-        messageElement.innerText = "On a dit un entier !!!";
+    if(isNaN(parseInt(valeur))){
+        messageElement.innerText = "["+tentative+"]"+" On a dit un entier !!!";
+        messageElement.style.color = "red";
         return;
     }
-    if (valeur < nombre) {
-        messageElement.innerText = "Trop petit !";
+    if (parseInt(valeur) < nombre) {
+        messageElement.innerText = "["+tentative+"]"+" Trop petit !";
         messageElement.style.color = "blue";
-    } else if (valeur > nombre) {
-        messageElement.innerText = "Trop grand !";
+    } else if(parseInt(valeur) > nombre) {
+        messageElement.innerText = "["+tentative+"]"+" Trop grand !";
         messageElement.style.color = "blue";
-    } else {
-        messageElement.innerText = "Bravo !";
-        messageElement.style.color = "green";
     }
 
-
 }
-boutton.addEventListener("click", jouer);
-for(let i=0; i<6; i++){
 
+let tentative = 1;
+function relance(){
+    if (tentative<=6){
+        jouer();
+        if (nombre == parseInt(valeur)){
+            messageElement.innerText = "["+tentative+"]"+" c'est gagné ! Le nombre Mystère était bien "+nombre;
+            messageElement.style.color = "green";
+            boutton.innerText = "Rejouer?";
+            tentative = 1;
+            return;
+        }
+        
+    }
+    if (tentative == 6){
+        messageElement.innerText = "["+tentative+"]"+" c'est perdu! Le nombre Mystère était "+nombre;
+        messageElement.style.color = "red";
+        boutton.innerText = "Rejouer?";
+        tentative = 1;
+        return;
+    }
+
+    tentative = tentative +1;
 }
+
+boutton.addEventListener("click", relance);
