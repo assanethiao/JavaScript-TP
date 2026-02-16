@@ -52,8 +52,7 @@
 			for (let l = 0; l < 3; l++)
                 chaine += plateau[2-l][l].textContent;
             if (chaine == "XXX" || chaine == "OOO") return true;
-
-            return false;
+            
         }
 
         function jouer() {
@@ -62,7 +61,7 @@
             if (analysePlateau() == true) {
                 let p = document.getElementById('message');
                 p.textContent = 'Le vainqueur est le joueur ' + joueur;
-            }
+            }else if(chaine.length )
             if (joueur == 'X') joueur = 'O';
             else joueur = 'X';
         }
