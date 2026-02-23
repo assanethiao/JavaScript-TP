@@ -13,7 +13,7 @@
 
         function analysePlateau() {
             let chaine = "";
-            
+
             /* Analyse de la ligne 0 */
             for (let c = 0; c < 3; c++)
                 chaine += plateau[0][c].textContent;
@@ -77,6 +77,22 @@
             }
         }
         
+        function clearBouton(){
+            joueur = 'X';
+            document.getElementById('message').textContent = "";
+
+            for (let m = 0; m < 3; m++) {
+                for (let n = 0; n < 3; n++) {
+                    let btn = plateau[m][n];
+                    btn.textContent = "";
+                    btn.disabled = false;
+                    btn.removeEventListener("click", jouer);
+                    btn.addEventListener("click", jouer);
+                }
+            }
+        }
+
+
         function jouer() {
             this.textContent = joueur;
             this.disabled = true;
@@ -125,6 +141,9 @@
             b = document.getElementById("bt9");
             plateau[2][2] = b;
             b.addEventListener("click", jouer);
+
+            btnRejouer = document.getElementById("btRejouer");
+            btnRejouer.addEventListener("click", clearBouton);
         }
     </script>
 </head>
