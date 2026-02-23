@@ -116,8 +116,9 @@
                 plateau[i] = []; 
                 for (let j = 0; j < 3; j++) {
                     let btn = document.createElement("button");
-                    btn.className = "bt";    
-                    btn.id = `bt${i * 3 + j + 1}`;
+                    btn.className = "bt"; 
+                    let num = i * 3 + j + 1;   
+                    btn.id = "bt"+num;
                     btn.addEventListener("click", jouer); 
                     plateau[i][j] = btn;
                     plateauDiv.append(btn);
@@ -129,8 +130,8 @@
 
         function init() {
 
-            createPlateau() 
-            
+            createPlateau();
+
             // plateau est une matrice 3x3
             for (let i = 0; i < 3; i++) plateau[i] = new Array(3);
             let b;
