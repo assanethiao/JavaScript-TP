@@ -8,7 +8,7 @@
     <script>
         let joueur = 'X';
         const plateau = [];
-        
+
         window.addEventListener('load', init);
 
         function analysePlateau() {
@@ -50,34 +50,34 @@
             if (chaine == "XXX" || chaine == "OOO") return true;
             /* Analyse de la diagonale 2 */
             chaine = "";
-			for (let l = 0; l < 3; l++)
-                chaine += plateau[2-l][l].textContent;
+            for (let l = 0; l < 3; l++)
+                chaine += plateau[2 - l][l].textContent;
             if (chaine == "XXX" || chaine == "OOO") return true;
-            
+
             return false;
         }
 
-        function plateauRempli(){
-            for (let m = 0; m < 3; m++){
-                for (let n = 0; n < 3; n++){
-                    if(plateau[m][n].textContent == ""){
+        function plateauRempli() {
+            for (let m = 0; m < 3; m++) {
+                for (let n = 0; n < 3; n++) {
+                    if (plateau[m][n].textContent == "") {
                         return false;
                     }
-                    
+
                 }
             }
             return true;
         }
 
-        function plateauDisabled(){
-            for (let m = 0; m < 3; m++){
-                for (let n = 0; n < 3; n++){
+        function plateauDisabled() {
+            for (let m = 0; m < 3; m++) {
+                for (let n = 0; n < 3; n++) {
                     plateau[m][n].disabled = true;
                 }
             }
         }
-        
-        function clearBouton(){
+
+        function clearBouton() {
             joueur = 'X';
             document.getElementById('message').textContent = "";
 
@@ -86,7 +86,6 @@
                     let btn = plateau[m][n];
                     btn.textContent = "";
                     btn.disabled = false;
-                    btn.removeEventListener("click", jouer);
                     btn.addEventListener("click", jouer);
                 }
             }
@@ -101,7 +100,7 @@
                 let p = document.getElementById('message');
                 p.textContent = 'Le vainqueur est le joueur ' + joueur;
                 plateauDisabled();
-            }else if(!resultatMatch && plateauRempli()){
+            } else if (!resultatMatch && plateauRempli()) {
                 let p = document.getElementById('message');
                 p.textContent = 'Match nul ';
                 plateauDisabled();
@@ -110,7 +109,28 @@
             else joueur = 'X';
         }
 
+        function createPlateau() {
+            const plateauDiv = document.getElementById("plateau");
+
+            for (let i = 0; i < 3; i++) {
+                plateau[i] = []; 
+                for (let j = 0; j < 3; j++) {
+                    let btn = document.createElement("button");
+                    btn.className = "bt";    
+                    btn.id = `bt${i * 3 + j + 1}`;
+                    btn.addEventListener("click", jouer); 
+                    plateau[i][j] = btn;
+                    plateauDiv.append(btn);
+                }
+                
+                plateauDiv.append(document.createElement("br"));
+            }
+        }
+
         function init() {
+
+            createPlateau() 
+            
             // plateau est une matrice 3x3
             for (let i = 0; i < 3; i++) plateau[i] = new Array(3);
             let b;
@@ -150,15 +170,6 @@
 
 <body>
     <div id="plateau">
-        <button type="button" class="bt" id="bt1"></button>
-        <button type="button" class="bt" id="bt2"></button>
-        <button type="button" class="bt" id="bt3"></button> </br>
-        <button type="button" class="bt" id="bt4"></button>
-        <button type="button" class="bt" id="bt5"></button>
-        <button type="button" class="bt" id="bt6"></button> </br>
-        <button type="button" class="bt" id="bt7"></button>
-        <button type="button" class="bt" id="bt8"></button>
-        <button type="button" class="bt" id="bt9"></button>
     </div>
     <p id="message"></p>
     <button type="button" id="btRejouer">REJOUER ?</button>
