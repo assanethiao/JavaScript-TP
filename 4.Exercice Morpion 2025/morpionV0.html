@@ -8,10 +8,11 @@
     <script>
         let joueur = 'X';
         const plateau = [];
-        let chaine = "";
+        
         window.addEventListener('load', init);
 
         function analysePlateau() {
+            let chaine = "";
             
             /* Analyse de la ligne 0 */
             for (let c = 0; c < 3; c++)
@@ -53,17 +54,41 @@
                 chaine += plateau[2-l][l].textContent;
             if (chaine == "XXX" || chaine == "OOO") return true;
             
+            return false;
         }
 
+        function plateauRempli(){
+            for (let m = 0; m < 3; m++){
+                for (let n = 0; n < 3; n++){
+                    if(plateau[m][n].textContent == ""){
+                        return false;
+                    }
+                    
+                }
+            }
+            return true;
+        }
+
+        function plateauDisabled(){
+            for (let m = 0; m < 3; m++){
+                for (let n = 0; n < 3; n++){
+                    plateau[m][n].disabled = true;
+                }
+            }
+        }
+        
         function jouer() {
             this.textContent = joueur;
             this.disabled = true;
-            if (analysePlateau() == true) {
+            let resultatMatch = analysePlateau();
+            if (resultatMatch) {
                 let p = document.getElementById('message');
                 p.textContent = 'Le vainqueur est le joueur ' + joueur;
-            }else{
+                plateauDisabled();
+            }else if(!resultatMatch && plateauRempli()){
                 let p = document.getElementById('message');
                 p.textContent = 'Match nul ';
+                plateauDisabled();
             }
             if (joueur == 'X') joueur = 'O';
             else joueur = 'X';

@@ -1,49 +1,58 @@
+
 let nombre = 31;
-let boutton = document.getElementById("valider");
+let bouton = document.getElementById("valider");
 let valeur = " ";
 let messageElement = " ";
+let tentative = 1;
 
-function jouer(){
+function jouer() {
     valeur = document.getElementById("input").value;
     messageElement = document.getElementById("message");
 
-    if(isNaN(parseInt(valeur))){
-        messageElement.innerText = "["+tentative+"]"+" On a dit un entier !!!";
+    if (isNaN(parseInt(valeur))) {
+        messageElement.innerText = "[" + tentative + "] On a dit un entier !!!";
         messageElement.style.color = "red";
         return;
     }
+
     if (parseInt(valeur) < nombre) {
-        messageElement.innerText = "["+tentative+"]"+" Trop petit !";
+        messageElement.innerText = "[" + tentative + "] Trop petit !";
         messageElement.style.color = "blue";
-    } else if(parseInt(valeur) > nombre) {
-        messageElement.innerText = "["+tentative+"]"+" Trop grand !";
+    } else if (parseInt(valeur) > nombre) {
+        messageElement.innerText = "[" + tentative + "] Trop grand !";
         messageElement.style.color = "blue";
     }
 
-}
-
-let tentative = 1;
-function relance(){
-    if (tentative<=6){
-        jouer();
-        if (nombre == parseInt(valeur)){
-            messageElement.innerText = "["+tentative+"]"+" c'est gagné ! Le nombre Mystère était bien "+nombre;
-            messageElement.style.color = "green";
-            boutton.innerText = "Rejouer?";
-            tentative = 1;
-            return;
-        }
-        
-    }
-    if (tentative == 6){
-        messageElement.innerText = "["+tentative+"]"+" c'est perdu! Le nombre Mystère était "+nombre;
-        messageElement.style.color = "red";
-        boutton.innerText = "Rejouer?";
-        tentative = 1;
+    if (parseInt(valeur) === nombre) {
+        messageElement.innerText = "[" + tentative + "] c'est gagné ! Le nombre Mystère était bien " + nombre;
+        messageElement.style.color = "green";
+        bouton.innerText = "Rejouer?";
+        bouton.removeEventListener("click", jouer);
+        bouton.addEventListener("click", rejouer);
         return;
     }
 
-    tentative = tentative +1;
+    if (tentative === 6) {
+        messageElement.innerText = "[" + tentative + "] c'est perdu! Le nombre Mystère était " + nombre;
+        messageElement.style.color = "red";
+        bouton.innerText = "Rejouer?";
+        bouton.removeEventListener("click", jouer);
+        bouton.addEventListener("click", rejouer);
+        return;
+    }
+
+    tentative++;
 }
 
-boutton.addEventListener("click", relance);
+function rejouer() {
+    tentative = 1;
+    document.getElementById("input").value = "";
+    messageElement.innerText = "";
+    bouton.innerText = "Essayer";
+
+    bouton.removeEventListener("click", rejouer);
+    bouton.addEventListener("click", jouer);
+}
+
+
+bouton.addEventListener("click", jouer);
